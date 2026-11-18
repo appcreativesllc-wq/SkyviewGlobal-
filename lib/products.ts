@@ -369,7 +369,11 @@ export const products: Product[] = [
 ];
 
 export function getProductById(id: string): Product | undefined {
-  return products.find(p => p.id === id);
+  return products.find(p => p.id === id || p.slug === id);
+}
+
+export function getProductBySlug(slug: string): Product | undefined {
+  return products.find(p => p.slug === slug);
 }
 
 export function getProductsByCategory(category: string): Product[] {

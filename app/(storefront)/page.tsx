@@ -12,31 +12,27 @@ export default function HomePage() {
   return (
     <div>
       {/* Hero Section - Premium Security Camera Installation with Approved Image */}
-      <section className="relative flex flex-col overflow-hidden md:block md:min-h-[600px]">
-        {/* Desktop background image */}
-        <div className="absolute inset-0 hidden md:block">
+      <section className="relative flex flex-col overflow-hidden bg-cloud-bg lg:block lg:aspect-[3/1]">
+        <div className="absolute inset-0 hidden lg:block">
           <Image
             src="/images/skyview-hero.png"
             alt="Modern home with security camera installation"
             fill
-            className="object-cover object-center"
-            priority
-            quality={95}
-            sizes="100vw"
+            className="object-contain"
+            preload
+            unoptimized
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r md:from-black/30 md:via-transparent md:to-transparent"></div>
         </div>
 
-        {/* Content Overlay - Positioned over left side (open sky) */}
-        <div className="relative z-10 flex h-auto items-center bg-cloud-bg md:h-full md:bg-transparent">
+        <div className="relative z-10 flex h-auto items-center bg-cloud-bg lg:absolute lg:inset-0 lg:bg-transparent">
           <div className="container-tight w-full">
-            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-8 md:mx-0 md:py-0 lg:px-12">
-              <div className="space-y-6">
-                <h1 className="text-4xl font-bold leading-tight tracking-tight text-midnight-navy sm:text-5xl md:text-6xl lg:text-7xl">
-                  Smarter Security.{'\n'}Safer Spaces.
+            <div className="mx-auto max-w-2xl px-6 py-12 sm:px-8 lg:mx-0 lg:max-w-xl lg:px-12 lg:py-0 xl:max-w-2xl">
+              <div className="space-y-5 lg:space-y-4 xl:space-y-6">
+                <h1 className="text-4xl font-bold leading-tight tracking-tight text-midnight-navy sm:text-5xl lg:text-5xl xl:text-6xl">
+                  <span className="block">Smarter Security.</span>
+                  <span className="block">Safer Spaces.</span>
                 </h1>
-                <p className="text-lg md:text-xl text-midnight-navy leading-relaxed max-w-lg font-medium">
+                <p className="max-w-lg text-lg font-medium leading-relaxed text-midnight-navy lg:text-base xl:text-xl">
                   High-quality CCTV cameras and smart security solutions for your home, business, and what matters most.
                 </p>
                 <div className="pt-2">
@@ -45,7 +41,7 @@ export default function HomePage() {
                     className="inline-flex items-center gap-3 px-8 py-4 bg-midnight-navy text-white font-semibold rounded-lg hover:bg-dark-navy transition-all duration-300 hover:shadow-lg hover:shadow-midnight-navy/30"
                   >
                     Explore Cameras
-                    <ArrowRight className="w-5 h-5" />
+                    <ArrowRight aria-hidden="true" className="h-5 w-5" />
                   </Link>
                 </div>
               </div>
@@ -53,23 +49,22 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Mobile treatment preserves the full panoramic image without distortion. */}
-        <div className="relative w-full md:hidden">
+        <div className="relative w-full lg:hidden">
           <Image
             src="/images/skyview-hero.png"
             alt="Modern home with security camera installation"
             width={2172}
             height={724}
             className="block h-auto w-full"
-            priority
-            quality={95}
+            preload
+            unoptimized
             sizes="100vw"
           />
         </div>
       </section>
 
       {/* Products Section - Featured Security Cameras */}
-      <section className="section-padding bg-white">
+      <section className="section-padding relative">
         <div className="container-tight">
           {/* Section Header */}
           <div className="mb-12">

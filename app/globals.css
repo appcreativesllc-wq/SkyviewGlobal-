@@ -8,7 +8,7 @@
   }
 
   body {
-    @apply bg-white text-primary-text;
+    @apply min-h-screen overflow-x-hidden bg-white text-primary-text;
   }
 
   h1 {

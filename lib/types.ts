@@ -15,6 +15,56 @@ export interface Product {
   connectivity?: 'wifi' | '4g' | 'solar' | 'mixed';
   powerType?: string;
   features: string[];
+  status?: 'published' | 'draft';
+  sourceReference?: string;
+  whatsappReference?: string;
+  preOrder?: boolean;
+  soldOut?: boolean;
+  createdAt?: string;
+  updatedAt?: string;
+  verificationNotes?: string;
+}
+
+export interface DraftProduct {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  shortDescription: string;
+  price: number | null;
+  category: string;
+  subcategory?: string;
+  tags: string[];
+  images: string[];
+  specifications: Record<string, string>;
+  inStock: boolean;
+  stock?: number;
+  connectivity?: 'wifi' | '4g' | 'solar' | 'mixed';
+  powerType?: string;
+  features: string[];
+  status: 'draft' | 'review' | 'published';
+  sourceReference?: string;
+  sourceScreenshot?: string;
+  whatsappProductId?: string;
+  preOrder?: boolean;
+  soldOut?: boolean;
+  createdAt: string;
+  updatedAt: string;
+  verificationNotes?: string;
+  importBatchId?: string;
+  potentialDuplicateOf?: string;
+}
+
+export interface CatalogImportBatch {
+  id: string;
+  fileName: string;
+  importedAt: string;
+  status: 'processing' | 'preview' | 'completed' | 'failed';
+  totalProducts: number;
+  importedProducts: number;
+  duplicates: number;
+  failedProducts: number;
+  errors?: string[];
 }
 
 export interface Category {

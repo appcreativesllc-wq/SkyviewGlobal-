@@ -1,67 +1,86 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart, Search, Menu, X, User } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
+
+  const categories = [
+    { name: 'Security Cameras', href: '/shop?category=security-cameras' },
+    { name: 'Military & Security Gear', href: '/shop?category=military' },
+    { name: 'Fans & Cooling', href: '/shop?category=fans' },
+    { name: 'Gaming & Home Office', href: '/shop?category=gaming' },
+  ];
 
   return (
-    <header className="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <header className="sticky top-0 z-50 bg-white border-b border-border-color">
       <div className="container-tight">
         <div className="flex items-center justify-between py-4">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-2">
-            <div className="w-10 h-10 bg-premium-blue rounded-lg flex items-center justify-center">
-              <div className="text-white font-bold text-lg">S</div>
+          {/* Logo and Brand */}
+          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
+            <div className="w-9 h-9 bg-midnight-navy rounded flex items-center justify-center">
+              <div className="text-white font-bold text-lg">🛡</div>
             </div>
-            <span className="font-bold text-xl text-midnight-navy hidden sm:inline">
-              SkyView
-            </span>
+            <div className="hidden sm:flex flex-col">
+              <span className="font-bold text-base text-midnight-navy leading-tight">SkyView</span>
+              <span className="text-xs text-secondary-text">Electronics</span>
+            </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link href="/" className="text-dark-text hover:text-premium-blue transition">
-              Home
-            </Link>
-            <Link href="/shop" className="text-dark-text hover:text-premium-blue transition">
-              Shop
-            </Link>
-            <Link href="/shop?cat=cctv" className="text-dark-text hover:text-premium-blue transition">
+          {/* Desktop Navigation - Center */}
+          <nav className="hidden lg:flex items-center gap-8">
+            <Link href="/" className="text-sm text-primary-text hover:text-midnight-navy transition font-medium">
               Security Cameras
             </Link>
-            <Link href="/about" className="text-dark-text hover:text-premium-blue transition">
-              About
+
+            {/* Shop All Categories Dropdown */}
+            <div className="relative group">
+              <button className="text-sm text-primary-text hover:text-midnight-navy transition font-medium flex items-center gap-1">
+                Shop All Categories
+                <ChevronDown className="w-4 h-4" />
+              </button>
+
+              {/* Dropdown Menu */}
+              <div className="absolute top-full left-0 mt-0 w-56 bg-white border border-border-color rounded shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 py-2">
+                {categories.map((cat) => (
+                  <Link
+                    key={cat.href}
+                    href={cat.href}
+                    className="block px-4 py-2 text-sm text-primary-text hover:bg-cloud-bg hover:text-midnight-navy transition"
+                  >
+                    {cat.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            <Link href="/faq" className="text-sm text-primary-text hover:text-midnight-navy transition font-medium">
+              Support
             </Link>
-            <Link href="/contact" className="text-dark-text hover:text-premium-blue transition">
+            <Link href="/contact" className="text-sm text-primary-text hover:text-midnight-navy transition font-medium">
               Contact
             </Link>
           </nav>
 
-          {/* Right side icons */}
+          {/* Right side: Search, Contact Button */}
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-cloud-bg rounded-lg transition">
-              <Search className="w-5 h-5 text-dark-text" />
+            <button className="p-2 hover:bg-cloud-bg rounded transition hidden sm:block">
+              <Search className="w-5 h-5 text-primary-text" />
             </button>
-            <Link href="/account" className="p-2 hover:bg-cloud-bg rounded-lg transition">
-              <User className="w-5 h-5 text-dark-text" />
-            </Link>
-            <Link href="/cart" className="p-2 hover:bg-cloud-bg rounded-lg transition relative">
-              <ShoppingCart className="w-5 h-5 text-dark-text" />
-              <span className="absolute top-1 right-1 w-4 h-4 bg-premium-blue text-white text-xs rounded-full flex items-center justify-center">
-                0
-              </span>
+            <Link href="/contact" className="hidden sm:block px-6 py-2 bg-midnight-navy text-white text-sm font-medium rounded hover:bg-dark-navy transition">
+              Contact
             </Link>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 hover:bg-cloud-bg rounded-lg transition"
+              className="lg:hidden p-2 hover:bg-cloud-bg rounded transition"
             >
               {isMenuOpen ? (
-                <X className="w-5 h-5 text-dark-text" />
+                <X className="w-5 h-5 text-primary-text" />
               ) : (
-                <Menu className="w-5 h-5 text-dark-text" />
+                <Menu className="w-5 h-5 text-primary-text" />
               )}
             </button>
           </div>
@@ -69,38 +88,50 @@ export default function Header() {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden pb-4 border-t border-gray-200 pt-4 space-y-3">
+          <nav className="lg:hidden pb-4 border-t border-border-color pt-4 space-y-3">
             <Link
               href="/"
-              className="block text-dark-text hover:text-premium-blue transition py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Home
-            </Link>
-            <Link
-              href="/shop"
-              className="block text-dark-text hover:text-premium-blue transition py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Shop
-            </Link>
-            <Link
-              href="/shop?cat=cctv"
-              className="block text-dark-text hover:text-premium-blue transition py-2"
+              className="block text-primary-text hover:text-midnight-navy transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Security Cameras
             </Link>
+
+            {/* Mobile Categories Section */}
+            <div>
+              <button
+                onClick={() => setIsCategoriesOpen(!isCategoriesOpen)}
+                className="flex items-center justify-between w-full text-primary-text hover:text-midnight-navy transition py-2 font-medium"
+              >
+                Shop All Categories
+                <ChevronDown className={`w-4 h-4 transition-transform ${isCategoriesOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {isCategoriesOpen && (
+                <div className="ml-4 mt-2 space-y-2 border-l-2 border-border-color pl-4">
+                  {categories.map((cat) => (
+                    <Link
+                      key={cat.href}
+                      href={cat.href}
+                      className="block text-sm text-secondary-text hover:text-midnight-navy transition py-1"
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {cat.name}
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
             <Link
-              href="/about"
-              className="block text-dark-text hover:text-premium-blue transition py-2"
+              href="/faq"
+              className="block text-primary-text hover:text-midnight-navy transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
-              About
+              Support
             </Link>
             <Link
               href="/contact"
-              className="block text-dark-text hover:text-premium-blue transition py-2"
+              className="block text-primary-text hover:text-midnight-navy transition py-2"
               onClick={() => setIsMenuOpen(false)}
             >
               Contact
