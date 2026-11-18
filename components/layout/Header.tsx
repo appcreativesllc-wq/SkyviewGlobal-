@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { ShoppingCart, Search, Menu, X, ChevronDown } from 'lucide-react';
+import Image from 'next/image';
+import { Search, Menu, X, ChevronDown } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Header() {
@@ -20,11 +21,17 @@ export default function Header() {
       <div className="container-tight">
         <div className="flex items-center justify-between py-4">
           {/* Logo and Brand */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-9 h-9 bg-midnight-navy rounded flex items-center justify-center">
-              <div className="text-white font-bold text-lg">🛡</div>
-            </div>
-            <div className="hidden sm:flex flex-col">
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="SkyView Electronics home">
+            <Image
+              src="/images/brand/skyview-shield.png"
+              alt=""
+              width={44}
+              height={44}
+              className="h-11 w-11 object-contain"
+              sizes="44px"
+              priority
+            />
+            <div className="flex flex-col">
               <span className="font-bold text-base text-midnight-navy leading-tight">SkyView</span>
               <span className="text-xs text-secondary-text">Electronics</span>
             </div>

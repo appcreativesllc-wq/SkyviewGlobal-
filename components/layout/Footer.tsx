@@ -1,7 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { Mail, Phone, MapPin, MessageSquare } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, Phone, MessageSquare } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -11,11 +12,19 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-premium-blue rounded-lg flex items-center justify-center">
-                <span className="font-bold text-lg">S</span>
+            <div className="flex items-center gap-3 mb-4">
+              <Image
+                src="/images/brand/skyview-shield.png"
+                alt=""
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded object-contain"
+                sizes="48px"
+              />
+              <div className="flex flex-col">
+                <span className="font-bold text-xl leading-tight">SkyView</span>
+                <span className="text-xs text-gray-300">Electronics</span>
               </div>
-              <span className="font-bold text-xl">SkyView</span>
             </div>
             <p className="text-gray-300 text-sm">
               Premium electronics and smart security solutions for Ghana.
