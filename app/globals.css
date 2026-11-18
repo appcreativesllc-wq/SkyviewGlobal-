@@ -8,11 +8,11 @@
   }
 
   body {
-    @apply bg-white text-dark-text;
+    @apply bg-white text-primary-text;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
 
   h2 {
@@ -28,7 +28,7 @@
   }
 
   p {
-    @apply text-base leading-relaxed;
+    @apply text-base leading-relaxed text-secondary-text;
   }
 }
 
@@ -38,11 +38,11 @@
   }
 
   .btn-primary {
-    @apply px-6 py-3 bg-premium-blue text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors;
+    @apply px-6 py-3 bg-midnight-navy text-white rounded-lg font-semibold hover:bg-dark-navy transition-colors;
   }
 
   .btn-secondary {
-    @apply px-6 py-3 bg-cloud-bg text-midnight-navy rounded-lg font-semibold hover:bg-slate-200 transition-colors;
+    @apply px-6 py-3 bg-cloud-bg text-midnight-navy rounded-lg font-semibold hover:bg-subtle-gray transition-colors;
   }
 
   .btn-ghost {
@@ -54,6 +54,7 @@
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-premium-blue to-blue-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-midnight-navy to-dark-navy bg-clip-text text-transparent;
   }
 }
+

@@ -6,14 +6,17 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'midnight-navy': '#0B1728',
+        'midnight-navy': '#11243A',
+        'dark-navy': '#0C1930',
         'premium-blue': '#1769E0',
-        'cloud-bg': '#F5F7FA',
-        'slate-gray': '#667085',
-        'dark-text': '#172033',
+        'cloud-bg': '#F3F5F8',
+        'subtle-gray': '#EAEDF1',
+        'primary-text': '#111827',
+        'secondary-text': '#566273',
+        'border-color': '#E3E7EC',
       },
       fontFamily: {
-        sans: ['system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
       },
       spacing: {
         'section': '5rem',
