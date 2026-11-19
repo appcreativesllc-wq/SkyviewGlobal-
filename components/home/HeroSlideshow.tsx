@@ -13,6 +13,7 @@ interface HeroSlide {
   description: string;
   cta: string;
   href: string;
+  external?: boolean;
 }
 
 interface HeroSlideshowProps {
@@ -79,7 +80,8 @@ const slides: HeroSlide[] = [
     description:
       'Ghana’s modern hardware marketplace for building materials, tools, supplies, and delivery.',
     cta: 'Shop GHARDWARE',
-    href: '/ghardware',
+    href: 'https://ghardware-production.up.railway.app/',
+    external: true,
   },
 ];
 
@@ -197,28 +199,51 @@ export function HeroSlideshow({
               key={slide.image}
               aria-hidden={index !== activeIndex}
               className={`absolute inset-0 transition-opacity ease-in-out ${
-                index === activeIndex ? 'opacity-100' : 'opacity-0'
+                index === activeIndex
+                  ? 'pointer-events-auto opacity-100'
+                  : 'pointer-events-none opacity-0'
               }`}
               style={{ transitionDuration: reducedMotion ? '0ms' : `${transitionDuration}ms` }}
             >
-              <Image
-                src={slide.image}
-                alt={index === activeIndex ? slide.alt : ''}
-                fill
-                className="scale-[1.168] object-cover object-center"
-                style={{ transformOrigin: 'center bottom' }}
-                sizes="100vw"
-                quality={90}
-                priority={index === 0}
-              />
+              {slide.external ? (
+                <a
+                  href={slide.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  tabIndex={index === activeIndex ? 0 : -1}
+                  aria-label="Visit the GHARDWARE marketplace"
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={slide.image}
+                    alt={index === activeIndex ? slide.alt : ''}
+                    fill
+                    className="scale-[1.168] object-cover object-center"
+                    style={{ transformOrigin: 'center bottom' }}
+                    sizes="100vw"
+                    quality={90}
+                  />
+                </a>
+              ) : (
+                <Image
+                  src={slide.image}
+                  alt={index === activeIndex ? slide.alt : ''}
+                  fill
+                  className="scale-[1.168] object-cover object-center"
+                  style={{ transformOrigin: 'center bottom' }}
+                  sizes="100vw"
+                  quality={90}
+                  priority={index === 0}
+                />
+              )}
             </div>
           ))}
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,#f3f5f8_0%,#f3f5f8_44%,rgba(243,245,248,0.96)_52%,rgba(243,245,248,0.18)_72%,transparent_86%)]" />
+          <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(90deg,#f3f5f8_0%,#f3f5f8_44%,rgba(243,245,248,0.96)_52%,rgba(243,245,248,0.18)_72%,transparent_86%)]" />
         </div>
 
-        <div className="relative z-10 bg-cloud-bg/95 lg:absolute lg:inset-0 lg:bg-transparent">
+        <div className="pointer-events-none relative z-10 bg-cloud-bg/95 lg:absolute lg:inset-0 lg:bg-transparent">
           <div className="container-tight w-full lg:flex lg:h-full lg:items-center">
-            <div className="max-w-2xl px-6 py-10 sm:px-8 lg:max-w-xl lg:px-12 lg:py-0 xl:max-w-2xl">
+            <div className="pointer-events-auto max-w-2xl px-6 py-10 sm:px-8 lg:max-w-xl lg:px-12 lg:py-0 xl:max-w-2xl">
               {slides.map((slide, index) => (
                 <div
                   key={slide.category}
@@ -234,17 +259,30 @@ export function HeroSlideshow({
                   <p className="mt-4 max-w-lg text-base font-medium leading-relaxed text-midnight-navy sm:text-lg lg:text-base xl:text-xl">
                     {slide.description}
                   </p>
-                  <Link
-                    href={slide.href}
-                    tabIndex={index === activeIndex ? 0 : -1}
-                    className="mt-7 inline-flex items-center gap-3 rounded-lg bg-midnight-navy px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-dark-navy hover:shadow-lg hover:shadow-midnight-navy/30"
-                  >
-                    {slide.cta}
-                    {slide.href === '/travel/apply' && (
-                      <span className="sr-only"> for SkyView Travel & Tour</span>
-                    )}
-                    <ArrowRight aria-hidden="true" className="h-5 w-5" />
-                  </Link>
+                  {slide.external ? (
+                    <a
+                      href={slide.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      tabIndex={index === activeIndex ? 0 : -1}
+                      className="mt-7 inline-flex items-center gap-3 rounded-lg bg-midnight-navy px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-dark-navy hover:shadow-lg hover:shadow-midnight-navy/30"
+                    >
+                      {slide.cta}
+                      <ArrowRight aria-hidden="true" className="h-5 w-5" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={slide.href}
+                      tabIndex={index === activeIndex ? 0 : -1}
+                      className="mt-7 inline-flex items-center gap-3 rounded-lg bg-midnight-navy px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-dark-navy hover:shadow-lg hover:shadow-midnight-navy/30"
+                    >
+                      {slide.cta}
+                      {slide.href === '/travel/apply' && (
+                        <span className="sr-only"> for SkyView Travel & Tour</span>
+                      )}
+                      <ArrowRight aria-hidden="true" className="h-5 w-5" />
+                    </Link>
+                  )}
                 </div>
               ))}
             </div>
