@@ -71,6 +71,16 @@ const slides: HeroSlide[] = [
     cta: 'Apply Now',
     href: '/travel/apply',
   },
+  {
+    image: '/images/brand/ghardware_ghana_marketplace_banner.png',
+    alt: 'GHARDWARE hardware marketplace storefront in Ghana with doors and delivery materials',
+    category: 'GHARDWARE',
+    heading: 'GHARDWARE',
+    description:
+      'Ghana’s modern hardware marketplace for building materials, tools, supplies, and delivery.',
+    cta: 'Shop GHARDWARE',
+    href: '/ghardware',
+  },
 ];
 
 function shuffledIndices(excluding: number) {

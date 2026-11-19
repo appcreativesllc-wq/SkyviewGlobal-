@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Mail, Phone, MessageSquare } from 'lucide-react';
+import { DeveloperSignature } from './DeveloperSignature';
 
 export default function Footer() {
   return (
@@ -151,6 +152,7 @@ export default function Footer() {
               </Link>
             </div>
           </div>
+          <DeveloperSignature websiteUrl={process.env.NEXT_PUBLIC_APPCREATIVES_WEBSITE_URL} />
         </div>
       </div>
     </footer>
