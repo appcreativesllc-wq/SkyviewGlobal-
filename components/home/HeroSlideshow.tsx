@@ -61,6 +61,16 @@ const slides: HeroSlide[] = [
     cta: 'Explore Gear',
     href: '/shop?category=military',
   },
+  {
+    image: '/images/brand/travel.png',
+    alt: 'Travelers discovering international destinations with SkyView Travel & Tour',
+    category: 'SkyView Travel & Tour',
+    heading: 'Explore the World with SkyView Travel & Tour.',
+    description:
+      'Your journey starts here. Discover travel opportunities, exciting destinations, and personalized travel experiences.',
+    cta: 'Apply Now',
+    href: '/travel/apply',
+  },
 ];
 
 function shuffledIndices(excluding: number) {
@@ -143,7 +153,7 @@ export function HeroSlideshow({
   return (
     <section
       aria-roledescription="carousel"
-      aria-label="SkyView product categories"
+      aria-label="SkyView departments and product categories"
       className="relative isolate overflow-hidden bg-cloud-bg"
       onMouseEnter={() => setIsInteracting(true)}
       onMouseLeave={() => setIsInteracting(false)}
@@ -220,6 +230,9 @@ export function HeroSlideshow({
                     className="mt-7 inline-flex items-center gap-3 rounded-lg bg-midnight-navy px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-dark-navy hover:shadow-lg hover:shadow-midnight-navy/30"
                   >
                     {slide.cta}
+                    {slide.href === '/travel/apply' && (
+                      <span className="sr-only"> for SkyView Travel & Tour</span>
+                    )}
                     <ArrowRight aria-hidden="true" className="h-5 w-5" />
                   </Link>
                 </div>

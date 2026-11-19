@@ -10,10 +10,11 @@ export default function Header() {
   const [isCategoriesOpen, setIsCategoriesOpen] = useState(false);
 
   const categories = [
-    { name: 'Security Cameras', href: '/shop?category=security-cameras' },
-    { name: 'Military & Security Gear', href: '/shop?category=military' },
-    { name: 'Fans & Cooling', href: '/shop?category=fans' },
-    { name: 'Gaming & Home Office', href: '/shop?category=gaming' },
+    { name: 'Security Cameras', href: '/shop?category=security-cameras', department: 'Products' },
+    { name: 'Military & Security Gear', href: '/shop?category=military', department: 'Products' },
+    { name: 'Fans & Cooling', href: '/shop?category=fans', department: 'Products' },
+    { name: 'Gaming & Home Office', href: '/shop?category=gaming', department: 'Products' },
+    { name: 'SkyView Travel & Tour', href: '/travel', department: 'Services' },
   ];
 
   return (
@@ -21,7 +22,7 @@ export default function Header() {
       <div className="container-tight">
         <div className="flex items-center justify-between py-4">
           {/* Logo and Brand */}
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="SkyView Electronics home">
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0" aria-label="SkyView home">
             <Image
               src="/images/brand/skyview-shield.png"
               alt=""
@@ -33,7 +34,7 @@ export default function Header() {
             />
             <div className="flex flex-col">
               <span className="font-bold text-base text-midnight-navy leading-tight">SkyView</span>
-              <span className="text-xs text-secondary-text">Electronics</span>
+              <span className="text-xs text-secondary-text">Electronics & Travel</span>
             </div>
           </Link>
 
@@ -41,6 +42,9 @@ export default function Header() {
           <nav className="hidden lg:flex items-center gap-8">
             <Link href="/" className="text-sm text-primary-text hover:text-midnight-navy transition font-medium">
               Security Cameras
+            </Link>
+            <Link href="/travel" className="text-sm text-primary-text hover:text-midnight-navy transition font-medium">
+              Travel & Tour
             </Link>
 
             {/* Shop All Categories Dropdown */}
@@ -58,7 +62,12 @@ export default function Header() {
                     href={cat.href}
                     className="block px-4 py-2 text-sm text-primary-text hover:bg-cloud-bg hover:text-midnight-navy transition"
                   >
-                    {cat.name}
+                    <span className="block">{cat.name}</span>
+                    {cat.department === 'Services' && (
+                      <span className="block text-[10px] font-bold uppercase tracking-[0.12em] text-secondary-text">
+                        Service department
+                      </span>
+                    )}
                   </Link>
                 ))}
               </div>
@@ -74,14 +83,20 @@ export default function Header() {
 
           {/* Right side: Search, Contact Button */}
           <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-cloud-bg rounded transition hidden sm:block">
+            <Link
+              href="/shop"
+              aria-label="Search SkyView products"
+              className="p-2 hover:bg-cloud-bg rounded transition hidden sm:block"
+            >
               <Search className="w-5 h-5 text-primary-text" />
-            </button>
+            </Link>
             <Link href="/contact" className="hidden sm:block px-6 py-2 bg-midnight-navy text-white text-sm font-medium rounded hover:bg-dark-navy transition">
               Contact
             </Link>
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-label={isMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={isMenuOpen}
               className="lg:hidden p-2 hover:bg-cloud-bg rounded transition"
             >
               {isMenuOpen ? (
@@ -103,6 +118,13 @@ export default function Header() {
             >
               Security Cameras
             </Link>
+            <Link
+              href="/travel"
+              className="block text-primary-text hover:text-midnight-navy transition py-2"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              SkyView Travel & Tour
+            </Link>
 
             {/* Mobile Categories Section */}
             <div>
@@ -123,6 +145,11 @@ export default function Header() {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       {cat.name}
+                      {cat.department === 'Services' && (
+                        <span className="ml-2 text-[10px] font-bold uppercase tracking-wider">
+                          Service
+                        </span>
+                      )}
                     </Link>
                   ))}
                 </div>

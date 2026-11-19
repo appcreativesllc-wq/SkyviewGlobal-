@@ -9,7 +9,7 @@ export default function Footer() {
     <footer className="bg-midnight-navy text-white mt-20">
       <div className="container-tight py-12 md:py-16">
         {/* Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+        <div className="grid grid-cols-1 gap-8 mb-12 md:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
@@ -23,11 +23,11 @@ export default function Footer() {
               />
               <div className="flex flex-col">
                 <span className="font-bold text-xl leading-tight">SkyView</span>
-                <span className="text-xs text-gray-300">Electronics</span>
+                <span className="text-xs text-gray-300">Electronics & Travel</span>
               </div>
             </div>
             <p className="text-gray-300 text-sm">
-              Premium electronics and smart security solutions for Ghana.
+              Premium electronics, smart security solutions, and proposed travel services.
             </p>
           </div>
 
@@ -56,6 +56,26 @@ export default function Footer() {
                 </Link>
               </li>
             </ul>
+          </div>
+
+          {/* Services */}
+          <div>
+            <h4 className="font-bold mb-4">Services</h4>
+            <ul className="space-y-2 text-sm text-gray-300">
+              <li>
+                <Link href="/travel" className="hover:text-premium-blue transition">
+                  SkyView Travel & Tour
+                </Link>
+              </li>
+              <li>
+                <Link href="/travel/apply" className="hover:text-premium-blue transition">
+                  Travel Application
+                </Link>
+              </li>
+            </ul>
+            <p className="mt-4 text-xs text-gray-400">
+              Proposed services shown for demonstration.
+            </p>
           </div>
 
           {/* Information */}
@@ -121,7 +141,7 @@ export default function Footer() {
         {/* Legal Links */}
         <div className="border-t border-gray-700 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>&copy; 2024 SkyView Electronics. All rights reserved.</p>
+            <p>&copy; 2024 SkyView. All rights reserved.</p>
             <div className="flex gap-6">
               <Link href="/privacy" className="hover:text-premium-blue transition">
                 Privacy Policy
